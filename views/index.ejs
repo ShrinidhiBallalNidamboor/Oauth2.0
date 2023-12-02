@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Register</title>
+  <link rel="shortcut icon" type="image/png" href="images/oauth-2.png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 400px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+
+    .tabs {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .tab:hover {
+      background-color: #f4f4f4;
+    }
+
+    .active-tab {
+      background-color: #ddd;
+    }
+
+    .form {
+      display: none;
+    }
+
+    .form.active-form {
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #e8590d;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e8590d;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1><b>Oauth 2.0<b></h1>
+  <div class="tabs">
+    <div class="tab active-tab" onclick="openTab('login')">Login</div>
+    <div class="tab" onclick="openTab('register')">Register</div>
+  </div>
+
+  <div class="form active-form" id="loginForm">
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+      <input type="text" id="loginUsername" placeholder="Username" name= "Username" required>
+      <input type="password" id="loginPassword" placeholder="Password" name= "Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <div class="form" id="registerForm">
+    <h2>Register</h2>
+    <form action="/register" method="POST">
+      <input type="text" id="registerUsername" placeholder="Username" name= "Username" required>
+      <input type="password" id="registerPassword" placeholder="Password" name="Password" required>
+      <input type="text" id="registerRole" placeholder="Role" name="Role" required>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openTab(tabName) {
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+
+    if (tabName === 'login') {
+      loginForm.classList.add('active-form');
+      registerForm.classList.remove('active-form');
+      document.querySelector('.tab:nth-child(1)').classList.add('active-tab');
+      document.querySelector('.tab:nth-child(2)').classList.remove('active-tab');
+    } else {
+      loginForm.classList.remove('active-form');
+      registerForm.classList.add('active-form');
+      document.querySelector('.tab:nth-child(1)').classList.remove('active-tab');
+      document.querySelector('.tab:nth-child(2)').classList.add('active-tab');
+    }
+  }
+</script>
+
+</body>
+</html>
