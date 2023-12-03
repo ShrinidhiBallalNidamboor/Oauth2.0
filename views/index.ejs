@@ -17,6 +17,33 @@
       height: 100vh;
     }
 
+    .loader-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; /* Full height of the viewport */
+        width: 100vw; /* Full width of the viewport */
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+        z-index: 999;
+    }
+
+    .loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #db6c34;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
     .container {
       width: 400px;
       background-color: #fff;
@@ -79,7 +106,9 @@
   </style>
 </head>
 <body>
-
+<div class="loader-container" id="loader-container">
+    <div class="loader"></div>
+</div>
 <div class="container">
   <h1><b>Oauth 2.0<b></h1>
   <div class="tabs">
@@ -108,6 +137,17 @@
 </div>
 
 <script>
+  window.addEventListener("load", function() {
+    // Show loader
+    document.getElementById('loader-container').style.display = 'flex'
+
+    // Hide the loader after 2 seconds
+    setTimeout(function() {
+        document.getElementById('loader-container').style.display = 'none';
+        // You can also update the content container here if needed
+    }, 1000);
+  });
+
   function openTab(tabName) {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
